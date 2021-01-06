@@ -10,7 +10,7 @@ import cl.desafiolatam.monstercreator.databinding.MonsterItemBinding
 import cl.desafiolatam.monstercreator.model.Monster
 
 class AdapterMonster : RecyclerView.Adapter<AdapterMonster.MonsterVH>() {
-    val monsterList= mutableListOf<Monster>()
+    private val monsterList= mutableListOf<Monster>()
     class MonsterVH(itemView:MonsterItemBinding) : RecyclerView.ViewHolder(itemView.root) {
         val monsterName: TextView =itemView.name
         val monsterPoints:TextView=itemView.MonsterPoints
@@ -23,10 +23,19 @@ class AdapterMonster : RecyclerView.Adapter<AdapterMonster.MonsterVH>() {
     }
 
     override fun onBindViewHolder(holder: MonsterVH, position: Int) {
-        TODO("Not yet implemented")
+        val monster=monsterList[position]
+        holder.monsterName.text=monster.name
+        holder.monsterPoints.text=monster.monsterPoints.toString()
+        holder.imgMonster.imageAlpha=monster.drawable
     }
 
     override fun getItemCount(): Int {
      return monsterList.size
+    }
+    fun updateMonsterList(plista:List<Monster>)
+    {
+        monsterList.clear()
+        monsterList.addAll(plista)
+        notifyDataSetChanged()
     }
 }
