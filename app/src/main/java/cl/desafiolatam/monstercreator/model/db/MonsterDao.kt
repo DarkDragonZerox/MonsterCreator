@@ -18,7 +18,7 @@ interface MonsterDao {
 
 
     @Delete
-    fun deleteAllMonsters(vararg monster: Monster)
+    fun deleteAllMonsters(vararg monster: Monster)//para que se recibe argumento
 
 
 }

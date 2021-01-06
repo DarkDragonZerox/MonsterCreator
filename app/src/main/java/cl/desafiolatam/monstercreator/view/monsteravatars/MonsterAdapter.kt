@@ -9,13 +9,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import cl.desafiolatam.monstercreator.R
+import cl.desafiolatam.monstercreator.model.Monster
 import cl.desafiolatam.monstercreator.model.MonsterImage
 
 /**
  * Created by Cristian Vidal on 2019-10-02.
  */
 class MonsterAdapter(
-    private val monsters: List<MonsterImage>,
+    private val monsters: MutableList<MonsterImage>,
     private val listener: MonsterListener
 ) : RecyclerView.Adapter<MonsterAdapter.ViewHolder>() {
 
@@ -57,5 +58,12 @@ class MonsterAdapter(
 
     interface MonsterListener {
         fun monsterClicked(monsterImage: MonsterImage)
+    }
+    fun monsterUpdate(monsterList:List<MonsterImage>){
+        monsters.clear()
+        monsters.addAll(monsterList)
+        notifyDataSetChanged()
+
+
     }
 }
