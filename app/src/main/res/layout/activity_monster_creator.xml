@@ -53,7 +53,7 @@
             android:layout_margin="16dp"
             android:hint="@string/nombre_de_tu_monstruo"
             android:inputType="text"
-            android:text="@={viewmodel.name}"
+            android:text="@{viewmodel.name}"
             app:layout_constraintBaseline_toBaselineOf="@+id/nameLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/nameLabel" />
@@ -63,6 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:layout_marginStart="16dp"
             android:text="Inteligencia"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -73,9 +74,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/intelligenceLabel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/intelligenceLabel" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/intelligenceLabel"
+            app:layout_constraintTop_toBottomOf="@+id/nameEditText"
+            android:entries="@array/ValorAtributo"/>
 
         <TextView
             android:id="@+id/strengthLabel"
@@ -92,9 +95,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/strengthLabel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/intelligenceLabel" />
+            app:layout_constraintHorizontal_bias="0.593"
+            app:layout_constraintStart_toEndOf="@+id/enduranceLabel"
+            app:layout_constraintTop_toBottomOf="@+id/endurance"
+            android:entries="@array/ValorAtributo"/>
 
         <TextView
             android:id="@+id/enduranceLabel"
@@ -111,9 +116,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/enduranceLabel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/intelligenceLabel" />
+            app:layout_constraintStart_toEndOf="@+id/strengthLabel"
+            app:layout_constraintTop_toBottomOf="@+id/intelligence"
+            android:entries="@array/ValorAtributo"/>
 
         <TextView
             android:id="@+id/hitPointsLabel"

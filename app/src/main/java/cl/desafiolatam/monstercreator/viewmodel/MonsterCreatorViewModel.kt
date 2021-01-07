@@ -15,6 +15,13 @@ import kotlinx.coroutines.launch
 // Class extends AndroidViewModel and requires application as a parameter.
 class MonsterCreatorViewModel(application: Application) : AndroidViewModel(application) {
 
+    val name=""
 
+
+
+fun saveCreature(){
+
+
+}
 
 }
