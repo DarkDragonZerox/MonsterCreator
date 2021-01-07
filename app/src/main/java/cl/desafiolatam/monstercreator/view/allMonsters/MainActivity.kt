@@ -1,15 +1,18 @@
 package cl.desafiolatam.monstercreator.view.allMonsters
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import cl.desafiolatam.monstercreator.R
 import cl.desafiolatam.monstercreator.databinding.ActivityMainBinding
+import cl.desafiolatam.monstercreator.view.monster.MonsterCreatorActivity
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,9 +20,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
+
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Create a Monster", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+                .setAction("Continue?", this).show()
         }
     }
 
@@ -37,6 +41,11 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onClick(v: View?) {
+        val intent=Intent(this,MonsterCreatorActivity::class.java)
+        startActivity(intent)
     }
 
 
