@@ -2,4 +2,7 @@
     <string name="app_name">MonsterCreator</string>
     <string name="action_settings">Settings</string>
     <string name="avatar">Monstruo</string>
+    <string name="nombre_de_tu_monstruo">Nombre de tu Monstruo</string>
+    <string name="fealdad">Fealdad</string>
+    <string name="maldad">Maldad</string>
 </resources>
