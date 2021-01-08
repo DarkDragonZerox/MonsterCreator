@@ -26,7 +26,7 @@ class AdapterMonster : RecyclerView.Adapter<AdapterMonster.MonsterVH>() {
         val monster=monsterList[position]
         holder.monsterName.text=monster.name
         holder.monsterPoints.text=monster.monsterPoints.toString()
-        holder.imgMonster.imageAlpha=monster.drawable
+        holder.imgMonster.setImageResource(monster.drawable)
     }
 
     override fun getItemCount(): Int {

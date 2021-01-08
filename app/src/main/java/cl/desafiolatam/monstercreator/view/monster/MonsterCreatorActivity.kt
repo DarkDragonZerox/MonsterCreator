@@ -45,7 +45,7 @@ class MonsterCreatorActivity : AppCompatActivity(), MonsterAdapter.MonsterListen
 
 
             val monsterName=binding.nameEditText.text.toString()
-            val monsterImage=binding.avatarImageView.drawable.hashCode()
+            val monsterImage=monsterLiveImage.value //binding.avatarImageView.drawable.hashCode()
             val monsterIntelligence=binding.intelligence.selectedItem.toString()
             val monsterEvilness=binding.endurance.selectedItem.toString()
             val monsterUgliness=binding.strength.selectedItem.toString()
@@ -60,12 +60,16 @@ class MonsterCreatorActivity : AppCompatActivity(), MonsterAdapter.MonsterListen
             binding.tapLabel.visibility=View.INVISIBLE
             binding.avatarImageView.visibility=View.VISIBLE
             binding.saveButton.visibility=View.INVISIBLE
-            val monster=monsterGenerator.generateMonster(attributes,monsterName,monsterImage.hashCode())
+            val monster= monsterImage?.let { it1 -> monsterGenerator.generateMonster(attributes,monsterName, it1.drawable) }
             Log.d("SaveMonster", "onCreate: guardando el Monstruo: $monster")
-            binding.hitPoints.text=monster.monsterPoints.toString()
-            binding.avatarImageView.drawable.alpha=monster.drawable
+            if (monster != null) {
+                binding.hitPoints.text=monster.monsterPoints.toString()
+            }
+            // binding.avatarImageView.drawable.alpha=monster.drawable
 
-            viewModel.saveCreature(monster)
+            if (monster != null) {
+                viewModel.saveCreature(monster)
+            }
 
 
 
