@@ -45,6 +45,7 @@ class MonsterCreatorActivity : AppCompatActivity(), MonsterAdapter.MonsterListen
             val monsterEvilness=binding.endurance.selectedItem.toString()
             val monsterUgliness=binding.strength.selectedItem.toString()
 
+
             attributes.evilness=monsterEvilness.toInt()
             attributes.intelligence=monsterIntelligence.toInt()
             attributes.ugliness=monsterUgliness.toInt()
@@ -56,6 +57,9 @@ class MonsterCreatorActivity : AppCompatActivity(), MonsterAdapter.MonsterListen
 
             val monster=monsterGenerator.generateMonster(attributes,monsterName,monsterImage)
             Log.d("SaveMonster", "onCreate: guardando el Monstruo: $monster")
+            binding.hitPoints.text=monster.monsterPoints.toString()
+            binding.avatarImageView.imageAlpha=monster.drawable
+
             viewModel.saveCreature(monster)
 
 
