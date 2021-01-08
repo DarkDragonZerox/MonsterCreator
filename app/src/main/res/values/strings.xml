@@ -5,6 +5,7 @@
     <string name="nombre_de_tu_monstruo">Nombre de tu Monstruo</string>
     <string name="fealdad">Fealdad</string>
     <string name="maldad">Maldad</string>
+    <string name="delete_all_monsters">Delete All Monsters</string>
 
     <string-array name="ValorAtributo">
         <item>0</item>

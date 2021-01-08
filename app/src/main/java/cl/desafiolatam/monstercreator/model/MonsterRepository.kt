@@ -22,13 +22,14 @@ class MonsterRepository(private val monsterDao: MonsterDao):MonsterRepositoryInt
 
     }
 
-    override fun clearAllMonsters() {
-        monsterBD.monsterDao().deleteAllMonsters()
+    override fun clearAllMonsters(value: List<Monster>) {
+       for (monster in value){
+        monsterBD.monsterDao().deleteAllMonsters(monster)}
     }
 
 }
 interface MonsterRepositoryInterface {
     fun saveMonster(monster: Monster)
     fun getAllMonsters(): LiveData<List<Monster>>
-    fun clearAllMonsters()
+    fun clearAllMonsters(value: List<Monster>)
 }

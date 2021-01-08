@@ -2,6 +2,7 @@ package cl.desafiolatam.monstercreator.view.allMonsters
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
@@ -11,6 +12,7 @@ import androidx.constraintlayout.widget.Placeholder
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import cl.desafiolatam.monstercreator.R
+import cl.desafiolatam.monstercreator.app.MonsterCreatorApplication
 import cl.desafiolatam.monstercreator.databinding.ActivityMainBinding
 import cl.desafiolatam.monstercreator.databinding.ContentMainBinding
 import cl.desafiolatam.monstercreator.view.monster.MonsterCreatorActivity
@@ -19,13 +21,13 @@ import cl.desafiolatam.monstercreator.viewmodel.AllMonsterViewModel
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-
+    val viewModel=AllMonsterViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding= ActivityMainBinding.inflate(layoutInflater)
         val merge=ContentMainBinding.bind(binding.root)
 
-        val viewModel=AllMonsterViewModel()
+
         val adapterMonster=AdapterMonster()
         merge.rvLista.adapter=adapterMonster
         merge.rvLista.layoutManager=LinearLayoutManager(this)
@@ -51,10 +53,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        Log.d("actionbutton", "onOptionsItemSelected:$item ")
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_settings -> {
+                deleteAll()
+                true}
+
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun deleteAll() {
+        Log.d("actionbutton", "deleteAll: ")
+        viewModel.clearAllCreatures()
     }
 
     override fun onClick(v: View?) {
