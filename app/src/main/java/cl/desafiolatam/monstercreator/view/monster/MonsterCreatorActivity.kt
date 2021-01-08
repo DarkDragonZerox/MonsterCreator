@@ -35,7 +35,7 @@ class MonsterCreatorActivity : AppCompatActivity(), MonsterAdapter.MonsterListen
         binding.saveButton.visibility=View.VISIBLE
         monsterLiveImage.observe(this, Observer {
             Log.d("TAG", "onCreate: observando cambios en ${monsterLiveImage.value} ")
-            monsterLiveImage.value?.let { it1 -> binding.avatarImageView.setImageResource(it.drawable) }
+            monsterLiveImage.value?.let { it -> binding.avatarImageView.setImageResource(it.drawable) }
         })
         val viewModel=MonsterCreatorViewModel(application)
         val monsterGenerator=MonsterGenerator()
@@ -45,7 +45,7 @@ class MonsterCreatorActivity : AppCompatActivity(), MonsterAdapter.MonsterListen
 
 
             val monsterName=binding.nameEditText.text.toString()
-            val monsterImage=binding.avatarImageView.drawable
+            val monsterImage=binding.avatarImageView.drawable.hashCode()
             val monsterIntelligence=binding.intelligence.selectedItem.toString()
             val monsterEvilness=binding.endurance.selectedItem.toString()
             val monsterUgliness=binding.strength.selectedItem.toString()
@@ -60,7 +60,7 @@ class MonsterCreatorActivity : AppCompatActivity(), MonsterAdapter.MonsterListen
             binding.tapLabel.visibility=View.INVISIBLE
             binding.avatarImageView.visibility=View.VISIBLE
             binding.saveButton.visibility=View.INVISIBLE
-            val monster=monsterGenerator.generateMonster(attributes,monsterName,monsterImage.alpha)
+            val monster=monsterGenerator.generateMonster(attributes,monsterName,monsterImage.hashCode())
             Log.d("SaveMonster", "onCreate: guardando el Monstruo: $monster")
             binding.hitPoints.text=monster.monsterPoints.toString()
             binding.avatarImageView.drawable.alpha=monster.drawable
