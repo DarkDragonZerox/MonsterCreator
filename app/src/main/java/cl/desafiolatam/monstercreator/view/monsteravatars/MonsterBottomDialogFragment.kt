@@ -38,7 +38,7 @@ class MonsterBottomDialogFragment : BottomSheetDialogFragment(), MonsterAdapter.
     }
 
     override fun monsterClicked(monsterImage: MonsterImage) {
-        callback.monsterClicked(monsterImage)
+         callback.monsterClicked(monsterImage)
     }
 
     companion object {

@@ -3,6 +3,9 @@ package cl.desafiolatam.monstercreator.view.monster
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.core.graphics.alpha
+import androidx.core.view.isVisible
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -28,9 +31,11 @@ class MonsterCreatorActivity : AppCompatActivity(), MonsterAdapter.MonsterListen
         super.onCreate(savedInstanceState)
         val binding=ActivityMonsterCreatorBindingImpl.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.tapLabel.visibility= View.VISIBLE
+        binding.saveButton.visibility=View.VISIBLE
         monsterLiveImage.observe(this, Observer {
             Log.d("TAG", "onCreate: observando cambios en ${monsterLiveImage.value} ")
-            binding.avatarImageView.imageAlpha = it.drawable
+            monsterLiveImage.value?.let { it1 -> binding.avatarImageView.setImageResource(it.drawable) }
         })
         val viewModel=MonsterCreatorViewModel(application)
         val monsterGenerator=MonsterGenerator()
@@ -40,7 +45,7 @@ class MonsterCreatorActivity : AppCompatActivity(), MonsterAdapter.MonsterListen
 
 
             val monsterName=binding.nameEditText.text.toString()
-            val monsterImage=binding.avatarImageView.imageAlpha
+            val monsterImage=binding.avatarImageView.drawable
             val monsterIntelligence=binding.intelligence.selectedItem.toString()
             val monsterEvilness=binding.endurance.selectedItem.toString()
             val monsterUgliness=binding.strength.selectedItem.toString()
@@ -52,13 +57,13 @@ class MonsterCreatorActivity : AppCompatActivity(), MonsterAdapter.MonsterListen
 
             Log.d("SaveMonster","MonsterName: $monsterName")
             Log.d("SaveMonster","MonsterAtributes: $attributes")
-
-
-
-            val monster=monsterGenerator.generateMonster(attributes,monsterName,monsterImage)
+            binding.tapLabel.visibility=View.INVISIBLE
+            binding.avatarImageView.visibility=View.VISIBLE
+            binding.saveButton.visibility=View.INVISIBLE
+            val monster=monsterGenerator.generateMonster(attributes,monsterName,monsterImage.alpha)
             Log.d("SaveMonster", "onCreate: guardando el Monstruo: $monster")
             binding.hitPoints.text=monster.monsterPoints.toString()
-            binding.avatarImageView.imageAlpha=monster.drawable
+            binding.avatarImageView.drawable.alpha=monster.drawable
 
             viewModel.saveCreature(monster)
 
@@ -86,7 +91,6 @@ class MonsterCreatorActivity : AppCompatActivity(), MonsterAdapter.MonsterListen
 
     override fun monsterClicked(monsterImage: MonsterImage) {
         Log.d("Monsterclicked", "monsterClicked: $monsterImage")
-        monsterLiveImage.value=monsterImage
-
+       monsterLiveImage.value=monsterImage
     }
 }
