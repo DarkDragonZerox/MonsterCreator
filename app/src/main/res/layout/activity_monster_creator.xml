@@ -11,6 +11,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_monster_creator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.creature.CreatureActivity">
@@ -73,11 +74,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:entries="@array/ValorAtributo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/intelligenceLabel"
-            app:layout_constraintTop_toBottomOf="@+id/nameEditText"
-            android:entries="@array/ValorAtributo"/>
+            app:layout_constraintTop_toBottomOf="@+id/nameEditText" />
 
         <TextView
             android:id="@+id/strengthLabel"
@@ -94,11 +95,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:entries="@array/ValorAtributo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.593"
             app:layout_constraintStart_toEndOf="@+id/enduranceLabel"
-            app:layout_constraintTop_toBottomOf="@+id/endurance"
-            android:entries="@array/ValorAtributo"/>
+            app:layout_constraintTop_toBottomOf="@+id/endurance" />
 
         <TextView
             android:id="@+id/enduranceLabel"
@@ -115,10 +116,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:entries="@array/ValorAtributo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/strengthLabel"
-            app:layout_constraintTop_toBottomOf="@+id/intelligence"
-            android:entries="@array/ValorAtributo"/>
+            app:layout_constraintTop_toBottomOf="@+id/intelligence" />
 
         <TextView
             android:id="@+id/hitPointsLabel"
@@ -149,7 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-             android:text="Guardar"
+            android:text="Guardar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hitPoints" />

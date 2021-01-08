@@ -16,7 +16,7 @@ import cl.desafiolatam.monstercreator.model.MonsterImage
  * Created by Cristian Vidal on 2019-10-02.
  */
 class MonsterAdapter(
-    private val monsters: MutableList<MonsterImage>,
+    private val monsters: List<MonsterImage>,
     private val listener: MonsterListener
 ) : RecyclerView.Adapter<MonsterAdapter.ViewHolder>() {
 
@@ -59,11 +59,5 @@ class MonsterAdapter(
     interface MonsterListener {
         fun monsterClicked(monsterImage: MonsterImage)
     }
-    fun monsterUpdate(monsterList:List<MonsterImage>){
-        monsters.clear()
-        monsters.addAll(monsterList)
-        notifyDataSetChanged()
 
-
-    }
 }

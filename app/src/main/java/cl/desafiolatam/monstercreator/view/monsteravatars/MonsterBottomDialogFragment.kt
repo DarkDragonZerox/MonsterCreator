@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import cl.desafiolatam.monstercreator.R
+import cl.desafiolatam.monstercreator.databinding.LayoutMonsterBottomSheetBinding
 import cl.desafiolatam.monstercreator.model.MonsterImage
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -19,14 +20,10 @@ class MonsterBottomDialogFragment : BottomSheetDialogFragment(), MonsterAdapter.
     private lateinit var callback: MonsterAdapter.MonsterListener
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.layout_monster_bottom_sheet, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-       // avatarRecyclerView.layoutManager = GridLayoutManager(context, 3)
-       // avatarRecyclerView.adapter = MonsterAdapter(MonsterStore.MONSTERS_IMAGE, this)
+        val binding=LayoutMonsterBottomSheetBinding.inflate(inflater,container,false)
+        binding.avatarRecyclerView.layoutManager = GridLayoutManager(context, 3)
+        binding.avatarRecyclerView.adapter=MonsterAdapter(MonsterStore.MONSTERS_IMAGE as MutableList<MonsterImage>, this)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -34,6 +31,7 @@ class MonsterBottomDialogFragment : BottomSheetDialogFragment(), MonsterAdapter.
 
         try {
             callback = activity as MonsterAdapter.MonsterListener
+
         } catch (e: ClassCastException) {
             throw ClassCastException(activity.toString() + " must implement MonsterAdapter.MonsterListener")
         }
