@@ -7,9 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.constraintlayout.widget.Placeholder
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import cl.desafiolatam.monstercreator.R
 import cl.desafiolatam.monstercreator.databinding.ActivityMainBinding
+import cl.desafiolatam.monstercreator.databinding.ContentMainBinding
 import cl.desafiolatam.monstercreator.view.monster.MonsterCreatorActivity
+import cl.desafiolatam.monstercreator.view.monsteravatars.AdapterMonster
+import cl.desafiolatam.monstercreator.viewmodel.AllMonsterViewModel
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -17,6 +23,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding= ActivityMainBinding.inflate(layoutInflater)
+        val merge=ContentMainBinding.bind(binding.root)
+
+        val viewModel=AllMonsterViewModel()
+        val adapterMonster=AdapterMonster()
+        merge.rvLista.adapter=adapterMonster
+        merge.rvLista.layoutManager=LinearLayoutManager(this)
+        val listaMonstruos=viewModel.getAllMonsterLiveData()
+        viewModel.getAllMonsterLiveData().observe(this,{ listaMonstruos.value?.let { it1 -> adapterMonster.updateMonsterList(it1) } })
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
