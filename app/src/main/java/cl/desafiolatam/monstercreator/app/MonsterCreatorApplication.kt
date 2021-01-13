@@ -15,7 +15,6 @@ class MonsterCreatorApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        database = Room.databaseBuilder(this, MonsterRoomDataBase::class.java, "monster_database").
-        allowMainThreadQueries().build()
+        database = Room.databaseBuilder(this, MonsterRoomDataBase::class.java, "monster_database").build()
     }
 }

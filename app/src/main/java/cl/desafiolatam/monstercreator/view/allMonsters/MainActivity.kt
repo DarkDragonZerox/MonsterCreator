@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun deleteAll() {
         Log.d("actionbutton", "deleteAll: ")
+
         viewModel.clearAllCreatures()
     }
 

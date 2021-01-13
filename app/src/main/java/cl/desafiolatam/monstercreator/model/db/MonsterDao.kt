@@ -11,14 +11,14 @@ import cl.desafiolatam.monstercreator.model.Monster
 interface MonsterDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMonster(monster: Monster)
+   suspend fun insertMonster(monster: Monster)
 
     @Query("SELECT * FROM monster_table ORDER BY name ASC")
     fun getAllMonsters(): LiveData<List<Monster>>
 
 
     @Delete
-    fun deleteAllMonsters(vararg monster: Monster)//recibe un monstruo o un arreglo
+    suspend fun deleteAllMonsters(vararg monster: Monster)//recibe un monstruo o un arreglo
 
 
 

@@ -13,7 +13,7 @@ import cl.desafiolatam.monstercreator.model.db.MonsterDao
 class MonsterRepository(private val monsterDao: MonsterDao):MonsterRepositoryInterface {
     val monsterBD=MonsterCreatorApplication.database
 
-    override fun saveMonster(monster: Monster) {
+    override suspend fun saveMonster(monster: Monster) {
         monsterBD.monsterDao().insertMonster(monster)
     }
 
@@ -22,14 +22,14 @@ class MonsterRepository(private val monsterDao: MonsterDao):MonsterRepositoryInt
 
     }
 
-    override fun clearAllMonsters(value: List<Monster>) {
+    override suspend fun clearAllMonsters(value: List<Monster>) {
        for (monster in value){
         monsterBD.monsterDao().deleteAllMonsters(monster)}
     }
 
 }
 interface MonsterRepositoryInterface {
-    fun saveMonster(monster: Monster)
+   suspend fun saveMonster(monster: Monster)
     fun getAllMonsters(): LiveData<List<Monster>>
-    fun clearAllMonsters(value: List<Monster>)
+    suspend fun clearAllMonsters(value: List<Monster>)
 }
