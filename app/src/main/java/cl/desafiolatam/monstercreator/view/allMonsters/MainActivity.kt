@@ -26,8 +26,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         val binding= ActivityMainBinding.inflate(layoutInflater)
         val merge=ContentMainBinding.bind(binding.root)
-
-
         val adapterMonster=AdapterMonster()
         merge.rvLista.adapter=adapterMonster
         merge.rvLista.layoutManager=LinearLayoutManager(this)
